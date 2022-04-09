@@ -1,0 +1,47 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ParisBakery.Models.Flavor;
+
+<br>
+<div class="card custom-card">
+  <div class="card-header">
+    <h1 class="display-4">Flavor: @Html.DisplayFor(model => model.Type)</h1>
+    <p>@Html.DisplayFor(model => model.Description)</p>
+  </div>
+  <div class="card-body">
+    <h2 class="card-title">Treats with this Flavor:</h2>
+    @if(@Model.Treats.Count == 0)
+    {
+      <p>There are no Treats with this flavor.</p>
+    }
+    else
+    {
+      <ul class="list-group" align="center">
+        @foreach(var join in Model.Treats)
+        {
+          <li class="list-group-item text-dark">@Html.ActionLink($"{ join.Treat.Name }", "Details", "Treats", new { id = join.Treat.TreatId })
+          @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+          {
+            @using (@Html.BeginForm("DeleteTreat", "Flavors"))
+            {
+              @Html.Hidden("joinId", @join.FlavorTreatId)
+              <input type="submit" value="Delete" class="btn btn-outline-danger" display= "inline-block"/>
+            }
+          }
+          </li>
+        }
+      </ul>
+    }
+  </div>
+  @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+  {
+  <div class="card-footer">
+    @Html.ActionLink("Add a Treat", "AddTreat", new { id = Model.FlavorId }, new { @class="btn btn-outline-primary" })
+    @Html.ActionLink("Edit this Flavor", "Edit", new { id = Model.FlavorId }, new { @class="btn btn-outline-primary" })
+    @Html.ActionLink("Delete this Flavor", "Delete", new { id = Model.FlavorId }, new { @class="btn btn-outline-primary" })
+  </div>
+  } 
+
+</div>

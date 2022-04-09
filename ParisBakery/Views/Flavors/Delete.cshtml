@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ParisBakery.Models.Flavor;
+
+<br>
+<div class="card custom-card">
+  <div class="card-header">
+    <h1 class="display-4">Delete @Html.DisplayFor(model => model.Type)</h1>
+  </div>
+  <div class="card-body">
+    <p>Confirm Delete?</p>
+  </div>
+  @using (Html.BeginForm())
+  {
+    <div class="card-footer">
+      <input type="submit" value="Delete" class="btn btn-outline-danger" />
+      @Html.ActionLink("Back to details", "Details", new { id = Model.FlavorId }, new { @class="btn btn-outline-primary" })
+    </div>
+  }

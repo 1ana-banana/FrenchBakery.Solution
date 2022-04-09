@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Paris Bakery</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-info bg-info  navbar-custom">
+        <a class="navbar-brand display-3 text-white" href="/"><strong>🇫🇷 Paris Bakery 🇫🇷</strong><a>
+        <ul class="nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/flavors">Flavor Directory</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/treats">Treat Directory</a>
+            </li>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="administration/listroles">Manage User Roles</a>
+                </li>
+            }
+        </ul>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/account">Account</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    @using (Html.BeginForm("LogOff", "Account"))
+                    {
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <input type="submit" class="nav-item btn btn-link text-white" style="width:auto" value="Logout of ADMIN @User.Identity.Name">
+                        }
+                        else
+                        {
+                        <input type="submit" class="nav-item btn btn-link text-white" style="width:auto" value="Logout @User.Identity.Name">
+                        }
+                    }
+                </li>
+            }
+            else
+            {
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/account/register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/account/login">Login</a>
+            </li>
+            }
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+</body>
+
+</html>

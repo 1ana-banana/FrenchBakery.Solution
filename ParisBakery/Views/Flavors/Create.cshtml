@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model ParisBakery.Models.Flavor;
+
+<br>
+<div class="card custom-card">
+  <div class="card-header">
+    <h1>Add a new Flavor</h1>
+  </div>
+  @using (Html.BeginForm())
+  {
+    <div class="card-body">
+      <div class="form-group">
+        @Html.Label("Type of Flavor:")
+        @Html.TextBoxFor(model => model.Type, new { @class = "form-control" })
+      </div>
+      <div class="form-group">
+        @Html.Label("Description:")
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="card-footer">
+      <input type="submit" value="Add new Flavor" class="btn btn-outline-primary" />
+    </div>
+  }
+</div>
