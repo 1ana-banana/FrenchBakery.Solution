@@ -1,0 +1,48 @@
+@{
+  Layout = "_Layout";
+}
+
+@using ParisBakery.ViewModels
+
+@model RegisterViewModel
+
+<br>
+<div class="card custom-card">
+  <div class="card-header">
+    <h1 class="display-4">Register a New Account</h1>
+  </div>
+  @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+  {
+  <div class="card-body">
+    <div class="row">
+      <div class="form-group col-md-6">
+        @Html.Label("First Name")
+        @Html.TextBoxFor(user=> user.FirstName, new { @class = "form-control" })
+      </div>
+      <div class="form-group col-md-6">
+        @Html.LabelFor(user=> user.Password)
+        @Html.PasswordFor(user=> user.Password, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        @Html.Label("Last Name")
+        @Html.TextBoxFor(user=> user.LastName, new { @class = "form-control" })
+      </div>
+      <div class="form-group col-md-6">
+        @Html.LabelFor(user=> user.ConfirmPassword)
+        @Html.PasswordFor(user=> user.ConfirmPassword, new { @class = "form-control" })
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        @Html.LabelFor(user => user.Email)
+        @Html.TextBoxFor(user=> user.Email, new { @class = "form-control" })
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <input type="submit" value="Register" class="btn btn-outline-primary" />
+  </div>
+  }
+</div>

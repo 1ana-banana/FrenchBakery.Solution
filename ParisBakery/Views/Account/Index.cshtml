@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+} 
+
+@using System.Security.Claims
+
+<br>
+<div class="card custom-card">
+  <div class="card-header">
+    <h1 class="display-4">Account Info</h1>
+  </div>
+@if (User.Identity.IsAuthenticated)
+{
+  <div class="card-body">
+    <p>Hello @User.Identity.Name!</p>
+  </div>
+  <div class="card-footer">
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+      <input type="submit" class="btn btn-outline-danger" value="Log out" />
+      @Html.ActionLink("Manage User Roles", "ListRoles", "Administration", null, new { @class="btn btn-outline-primary" })
+    }
+  </div>
+}
+else
+{
+  <div class="card-body">
+    <p>Please login or register</p>
+  </div>
+  <div class="card-footer">
+    @Html.ActionLink("Register", "Register", null, null, new { @class="btn btn-outline-primary" })
+    @Html.ActionLink("Log in", "Login", null, null, new { @class="btn btn-outline-primary" })
+  </div>
+}
