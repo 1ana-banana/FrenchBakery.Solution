@@ -1,5 +1,5 @@
-using FrenchBakery.Models;
-using FrenchBakery.ViewModels;
+using ParisBakery.Models;
+using ParisBakery.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 
-namespace FrenchBakery.Controllers
+namespace ParisBakery.Controllers
 {
   [Authorize]
   public class AdministrationController: Controller
