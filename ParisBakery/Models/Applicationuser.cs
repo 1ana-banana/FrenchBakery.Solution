@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace FrenchBakery.Models
+namespace ParisBakery.Models
 {
     public class ApplicationUser : IdentityUser
     {
